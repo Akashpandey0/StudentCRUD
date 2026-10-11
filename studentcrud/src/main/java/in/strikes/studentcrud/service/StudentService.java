@@ -14,16 +14,8 @@ public class StudentService {
         this.studentRepo = studentRepo;
     }
 
-    public Student createStudent(Student student){
-        System.out.println("Service");
-        // Student studentResp = studentRepo.saveStudent(student);
-        System.out.println("Existing service");
-        Student s1 = new Student();
-        s1.setName("Akash Pandey");
-        s1.setAge(21);
-        s1.setEmail("7326");
-        s1.setRollNo(434323432L);
-        s1.setSubject("Java");
-        return s1;
+    public Student createStudent(Student studentReq){
+        Student studentResp = studentRepo.save(studentReq);
+        return studentResp;
     }
 }

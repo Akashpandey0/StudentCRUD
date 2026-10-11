@@ -20,9 +20,7 @@ public class StudentApi {
 
     @PostMapping("/create")
     public Student createStudent(@RequestBody Student student) {
-        System.out.println("Controller");
         Student createStudent = studentService.createStudent(student);
-        System.out.println("Existing controller");
         return createStudent;
     }
 
