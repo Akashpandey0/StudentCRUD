@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import in.strikes.studentcrud.entity.Student;
@@ -36,8 +37,8 @@ public class StudentApi {
     }
 
     // read one student
-    @GetMapping ("/get/{id}")
-    public ResponseEntity<Student> getStudent(@PathVariable Long id) {
+    @GetMapping ("/get")
+    public ResponseEntity<Student> getStudent(@RequestParam Long id) {
         Student studentResp = studentService.getStudent(id);
 
         if(studentResp == null) {
@@ -66,8 +67,8 @@ public class StudentApi {
     }
 
     // update student
-    @PutMapping ("/update/{id}")
-    public ResponseEntity<Student> updateStudent(@PathVariable Long id, @RequestBody Student studentDetails) {
+    @PutMapping ("/update")
+    public ResponseEntity<Student> updateStudent(@RequestParam Long id, @RequestBody Student studentDetails) {
         Student existingStudent = studentService.updateStudent(id, studentDetails);
 
         if(existingStudent == null) {
@@ -82,8 +83,8 @@ public class StudentApi {
     }
 
     //Delete By Id
-    @DeleteMapping ("/delete/{id}")
-    public ResponseEntity<String> deleteById(@PathVariable Long id) {
+    @DeleteMapping ("/delete")
+    public ResponseEntity<String> deleteById(@RequestParam Long id) {
         Boolean isDeleted = studentService.deleteById(id);
 
         if(!isDeleted) {
@@ -94,8 +95,8 @@ public class StudentApi {
                 .body("Record Deleted");
     }
 
-    @PatchMapping("/softDelete/{id}")
-    public ResponseEntity<String> deleteStudentSoftDelete(@PathVariable Long id) {
+    @PatchMapping("/softDelete")
+    public ResponseEntity<String> deleteStudentSoftDelete(@RequestParam Long id) {
         Boolean isDeleted = studentService.deleteStudentSoftDelete(id);
 
         if(!isDeleted) {
